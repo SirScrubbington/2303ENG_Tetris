@@ -11,16 +11,16 @@ int board[Y][X];
 point block[4];
 
 // Set the point position absolute to provided coordinates.
-int set_position(int x,int y,point*p){
-	block.x = x;
-	block.y = y;
+int set_position(point*p,int x, int y){
+	p->x = x;
+	p->y = y;
 	return 0;
 }
 
 // Set the point position relative to provided coordinates.
-int set_position_relative(int x, int y, point*p){
-	block.x += x;
-	block.y += y;
+int set_position_relative(point*p,int x, int y){
+	p->x += x;
+	p->y += y;
 	return 0;
 }
 
@@ -87,7 +87,7 @@ int check_for_collision(int x, int y){
 int interrupt_left(){
 	int i;
 	for (i=0;i<3;i++){
-		set_position_relative(1,0,block[i]);
+		set_position_relative(&block[i],1,0);
 	}
 	return 0;
 }
@@ -96,13 +96,14 @@ int interrupt_left(){
 int interrupt_right(){
 	int i;
 	for (i=0;i<3;i++){
-		set_position_relative(-1,0,block[i]);
+		set_position_relative(&block[i],-1,0);
 	}
 	return 0;
 }
 
 // Called when a row is filled to clear the row and move all the blocks down one space.
 int cascade_and_delete(int y){
+	int i,j;
 	for(j=0;j<X;j++){
 		board[y][j]=0;
 	}
@@ -116,15 +117,18 @@ int cascade_and_delete(int y){
 	for (j=0;j<X;j++){
 		board[Y-1][j]=0;
 	}
+	return 0;
 }
 
 // Called every step to update the game state.
 int update(){
 	
+	int i,j;
+	
 	int contact=0;
 	
 	for(i=0;i<3;i++){
-		if(check_for_collision(block[i].x, block[i].y) or (block[i].y==Y)){
+		if(check_for_collision(block[i].x, block[i].y) || (block[i].y==Y)){
 			contact=1;
 		}
 	}
@@ -132,7 +136,7 @@ int update(){
 	if(contact){
 		// Add player blocks to board
 		for(i=0;i<3;i++){
-			board[block[i].y[block[i].x]=1;
+			board[block[i].y][block[i].x]=1;
 		}
 		
 		// Check for complete row
@@ -146,6 +150,7 @@ int update(){
 	}
 	
 	for(i=0;i<3;i++){
-		set_position_relative(0,1,block[i]);
+		set_position_relative(&block[i],0,1);
 	}
+	return 0;
 }
