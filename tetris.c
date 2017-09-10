@@ -61,9 +61,6 @@ int decide_block_type(int n,point*p[]){
 			set_position(p[1],1,0);
 			set_position(p[2],2,0);
 			set_position(p[3],1,1);
-		
-		default:
-			return -1;
 	}
 	
 	// Align the blocks to the centre of the board

@@ -71,6 +71,8 @@ __heap_limit
         EXPORT  __Vectors
         EXPORT  __Vectors_End
         EXPORT  __Vectors_Size
+			
+		IMPORT ISR_PORTB
 		
 __Vectors
         DCD     __initial_sp              ; Top of Stack
@@ -91,7 +93,7 @@ __Vectors
         DCD     SysTick_Handler             ; SysTick Handler
 					; External Interrupts
         DCD     GPIOA_Handler             ;   0: GPIO Port A
-        DCD     GPIOB_Handler             ;   1: GPIO Port B
+        DCD     ISR_PORTB ; GPIOB_Handler             ;   1: GPIO Port B
         DCD     GPIOC_Handler             ;   2: GPIO Port C
         DCD     GPIOD_Handler             ;   3: GPIO Port D
         DCD     GPIOE_Handler             ;   4: GPIO Port E

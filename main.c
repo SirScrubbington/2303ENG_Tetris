@@ -1,5 +1,6 @@
 #include "registers.h"
 #include "tetris.c"
+#include "LCD_Use.c"
 
 void dpad_setup(void);
 void lcd_setup(void);
@@ -7,11 +8,45 @@ void lcd_setup(void);
 int main(){
 	dpad_setup();
 	lcd_setup();
-	while(1){ }
+	LCD_Init();
+	while(1){
+		//DelayMs(1000);
+		//update();
+	}
 }
 
 void dpad_setup(){
+	// Setup GPIO B
 	
+	// Ports to use with GPIO B: A5,A6,A7
+	int PB = 224;
+	
+	SYSCTL_RCGCGPIO |= 0x2;
+	while((SYSCTL_PRGPIO & 0x2)!=0x2){};
+	
+	GPIOB_DIR |=PB;
+	
+	GPIOB_AFSEL |= PB;
+		
+	GPIOB_DR8R |= PB;
+		
+	GPIOB_DEN |= PB;
+		
+	__asm("CPSID I");
+	
+	GPIOB_IM &= ~(PB);
+	GPIOB_IS &= ~(PB);
+	GPIOB_IEV &= ~(PB);
+	GPIOB_IEV &= ~(PB);
+	GPIOB_IM |= PB;
+	
+	NVIC_EN0 |= (1<<17);
+		
+	__asm("CPSIE I");
+}
+
+void ISR_PORTB(){
+	 __asm("MOV R11 ,#0xFFFF");
 }
 
 void lcd_setup(){
@@ -37,11 +72,11 @@ void lcd_setup(){
 		
 	// Ports to use with GPIO E: E4, E5
 		
-	int PE = 48;
+	int PE = 224;
 		
-	SYSCTL_RCGCGPIO |= 0xF;
-	while((SYSCTL_PRGPIO & 0xF) != 0xF) {};
-		
+	SYSCTL_RCGCGPIO |= 16;
+	while((SYSCTL_PRGPIO & 16) != 16) {};
+
 	GPIOE_DIR |= PE;
 		
 	GPIOE_AFSEL &= PE;
