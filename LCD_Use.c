@@ -13,13 +13,12 @@
 	
 #define GPIOA_DATA	(*((unsigned long *)0x400043FC))
 
-char LCDmat[1024];
+unsigned char LCDmat[1056];
 
 void DelayMs(unsigned int);
 void LCD_Cmd_Out(unsigned int);
 void LCD_Char_Out(unsigned int);
 void LCD_Contrast(unsigned int,unsigned int);
-void DelayMS(unsigned int);
 void LCD_Refresh(void);
 void LCD_Pixel(unsigned int, unsigned int, unsigned int);
 void LCD_Blank(void);
@@ -28,9 +27,6 @@ void LCD_Init(){
 	
 	CSport &=  ~CSbit;
 	RSTport &= ~RSTbit;
-	
-	//CSport &= ~1;
-	//RSTport &= ~2;
 
 	DelayMs(50);
 	

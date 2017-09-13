@@ -70,16 +70,16 @@ void lcd_setup(){
 		
 	// Setup GPIO E
 		
-	// Ports to use with GPIO E: E4, E5
+	// Ports to use with GPIO E: E3, E4, E5
 		
-	int PE = 224;
+	int PE = 56;
 		
 	SYSCTL_RCGCGPIO |= 16;
 	while((SYSCTL_PRGPIO & 16) != 16) {};
 
 	GPIOE_DIR |= PE;
 		
-	GPIOE_AFSEL &= PE;
+	GPIOE_AFSEL &= ~PE;
 		
 	GPIOE_DR8R |= PE;
 		
