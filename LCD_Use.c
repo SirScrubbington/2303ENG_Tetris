@@ -41,11 +41,15 @@ void LCD_Init(){
 	LCD_Cmd_Out(0x20 | 0x3);
 	LCD_Cmd_Out(0x28 | 0x4);
 	
-	DelayMs(50);
+	DelayMs(70);
+	
+	LCD_Cmd_Out(0x28 | 0x6);
+	
+	DelayMs(70);
 	
 	LCD_Cmd_Out(0x28 | 0x7);
 	
-	DelayMs(50);
+	DelayMs(70);
 	
 	LCD_Cmd_Out(0x26);
 	LCD_Cmd_Out(0x81);
@@ -60,11 +64,24 @@ void LCD_Init(){
 	
 }
 
+void LCD_Test(){
+	LCD_Pixel(0,0,0);
+	LCD_Refresh();
+	
+	LCD_Pixel(1,1,0);
+	LCD_Refresh();
+	
+	LCD_Pixel(2,2,0);
+	LCD_Refresh();
+	
+	LCD_Pixel(3,3,0);
+	LCD_Refresh();
+}
+
 void LCD_Cmd_Out(unsigned int n){
 	n &= 0xFF;
 	A0port &= ~(A0bit);
 	LCD_Char_Out(n);
-	
 }
 
 void LCD_Dat_Out(unsigned int n){
@@ -145,7 +162,7 @@ void LCD_Refresh(){
 	int x,y;
 	for (y=0; y<8 ;y++){
 		
-		int  n = x | 0xB0;
+		int  n = y | 0xB0;
 		LCD_Cmd_Out(n);
 		n = 0;
 		LCD_Cmd_Out(n);
@@ -161,9 +178,10 @@ void LCD_Refresh(){
 
 void LCD_Blank(){
 	int i;
-	for(i=0;i<1024;i++){
+	for(i=0;i<1056;i++){
 		LCDmat[i]=0;
 	}	
+	LCD_Refresh();
 }
 
 

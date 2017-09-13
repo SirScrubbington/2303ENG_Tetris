@@ -9,6 +9,7 @@ int main(){
 	dpad_setup();
 	lcd_setup();
 	LCD_Init();
+	LCD_Test();
 	while(1){
 		//DelayMs(1000);
 		//update();
