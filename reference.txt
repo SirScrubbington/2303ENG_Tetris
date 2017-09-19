@@ -1,0 +1,113 @@
+LCD_Init(void)
+
+LCD_Cmd_Out(char: ch [R0])
+
+Old:
+
+R0: A0port
+R1: A0port Data
+R2: -
+R3: -
+R4: ch
+R5: -
+
+New:
+
+R0: ch
+R1: A0port
+R2: A0port Data
+R3: -
+R4: -
+R5: -
+
+LCD_Dat_Out(char: ch [R0])
+
+Old:
+
+R0: A0port
+R1: A0port Data
+R2: -
+R3: -
+R4: ch
+R5: -
+
+New:
+
+R0: ch
+R1: A0port
+R2: A0port Data
+R3: -
+R4: -
+R5: -
+
+LCD_Char_Out(char: ch [R0])
+
+Old:
+
+R0: Port Addresses
+R1: Port Data
+R2: -
+R3: loop counter
+R4: char
+R5: AND of char, 0x80
+
+New:
+
+R0: char
+R1: Port Addresses
+R2: Port Data
+R3: loop counter
+R4: -
+R5: AND of char,0x80
+
+LCD_Contrast(int: res_ratio [R0] , int: contrast [R1])
+
+Old:
+
+R0: -
+R1: -
+R2: -
+R3: -
+R4: res_ratio
+R5: contrast
+
+New:
+
+R0: res_ratio
+R1: contrast
+R2: -
+R3: -
+R4: -
+R5: -
+
+LCD_Pixel(int: x [R0] , int: y [R1] , int: colour [R2])
+
+Old:
+
+R0: temporary storage value 0 (8,)
+R1: temporary storage value 1 (y/8,)
+R2: temporary storage value 2 (remainder,)
+R3: temporary storage value 3 (MATPOS,)
+R4: array address
+R5: x
+R6: y
+R7: colour
+
+New:
+
+R0: x
+R1: y
+R2: colour
+R3: temporary storage value 0
+R4: temporary storage value 1
+R5: temporary storage value 2
+R6: temporary storage value 3 
+R7: array address
+
+LCD_Refresh(void)
+
+
+
+LCD_Blank(void)
+
+

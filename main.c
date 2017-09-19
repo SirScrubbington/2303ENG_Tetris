@@ -1,6 +1,17 @@
 #include "registers.h"
 #include "tetris.c"
-#include "LCD_Use.c"
+//#include "LCD_Use.c"
+
+unsigned char charmap[1056];
+
+extern void LCD_Init(void);
+extern void LCD_Cmd_Out(unsigned int);
+extern void LCD_Dat_Out(unsigned int);
+extern void LCD_Char_Out(unsigned int);
+extern void LCD_Contrast(unsigned int, unsigned int);
+extern void LCD_Pixel(unsigned int, unsigned int, unsigned int);
+extern void LCD_Refresh(void);
+extern void LCD_Blank(void);
 
 void dpad_setup(void);
 void lcd_setup(void);
