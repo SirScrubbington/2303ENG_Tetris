@@ -6,11 +6,11 @@ LCDmat SPACE   1056
        EXPORT  LCD_Init
 	   EXPORT  LCD_Cmd_Out
 	   EXPORT  LCD_Dat_Out
-	   IMPORT  DelayMs
 	   EXPORT  LCD_Contrast
 	   EXPORT  LCD_Pixel
 	   EXPORT LCD_Refresh
 	   EXPORT LCD_Blank
+	   EXPORT DelayMs_R0
 		 	 
 
 CSbit  EQU 0x80
@@ -24,66 +24,98 @@ A0port EQU  0x400043FC
 CLKport EQU 0x400243FC
 DATport EQU 0x400243FC
 
+DelayMs_R0
+		PUSH {LR,R0-R4}
+		; R3 = Delay Time
+		
+OuterR0	SUB R0,#1
+		MOV R1,#4000
+InnerR0	
+		SUB R1,#1
+		CMP R1,#0
+		BGT InnerR0
+		CMP R0,#0
+		BGT OuterR0
+
+		POP {LR,R0-R4}
+		BX LR
+
+DelayMs
+		PUSH {LR,R0-R4}
+		; R3 = Delay Time
+		
+Outer 	SUB R3,#1
+		MOV R0,#4000
+Inner	
+		SUB R0,#1
+		CMP R0,#0
+		BGT Inner
+		CMP R3,#0
+		BGT Outer
+
+		POP {LR,R0-R4}
+		BX LR
+
 LCD_Init  
 ; assuming CSwrite pin0, RSTwrite pin1 
 	   PUSH {LR, R0-R5}
-	   LDR R0, =CSport
-	   LDR R1, [R0]  
-	   BIC R1, #(CSbit)        ; GPIO_DATA &= ~1   CSwrite(0)
-	   STR R1, [R0]
-	   LDR R0, =RSTport
-	   LDR R1, [R0] 
-	   BIC R1, #(RSTbit)        ; GPIO_DATA &= ~2   RSTwrite(0)
-	   STR R1, [R0]      
+	   LDR R1, =CSport
+	   LDR R2, [R1]  
+	   BIC R2, #(CSbit)        ; GPIO_DATA &= ~1   CSwrite(0)
+	   STR R2, [R1]
+	   LDR R1, =RSTport
+	   LDR R2, [R1] 
+	   BIC R2, #(RSTbit)        ; GPIO_DATA &= ~2   RSTwrite(0)
+	   STR R2, [R1]      
 	   MOV R3, #70
 	   BL DelayMs        ; DelayMs(50ms)
-	   LDR R1, [R0]
-	   ORR R1, #(RSTbit)
-	   STR R1, [R0]      ; GPIO_DATA |= 2    RSTwrite(1)
+	   LDR R2, [R1]
+	   ORR R2, #(RSTbit)
+	   STR R2, [R1]      ; GPIO_DATA |= 2    RSTwrite(1)
 	   MOV R3, #70
 	   BL DelayMs
 
-	   MOV R4, #0xA2     ; 1/9th bias
+	   MOV R0, #0xA2     ; 1/9th bias
 	   BL  LCD_Cmd_Out
-	   MOV R4, #0xA0
+	   MOV R0, #0xA0
 	   BL  LCD_Cmd_Out
-	   MOV R4, #0xC0
+	   MOV R0, #0xC0
 	   BL  LCD_Cmd_Out
-	   MOV R4, #0xC8
+	   MOV R0, #0xC8
 	   BL  LCD_Cmd_Out
-	   MOV R4, #(0x20 :OR: 0x3)
+	   MOV R0, #(0x20 :OR: 0x3)
 	   BL  LCD_Cmd_Out
-	   MOV R4, #(0x28 :OR: 0x4)
-	   BL  LCD_Cmd_Out
-	   MOV R3, #70
-	   BL  DelayMs
-	   MOV R4, #(0x28 :OR: 0x6)
+	   MOV R0, #(0x28 :OR: 0x4)
 	   BL  LCD_Cmd_Out
 	   MOV R3, #70
 	   BL  DelayMs
-	   MOV R4, #(0x28 :OR: 0x7)
+	   MOV R0, #(0x28 :OR: 0x6)
 	   BL  LCD_Cmd_Out
 	   MOV R3, #70
 	   BL  DelayMs
-	   MOV R4, #0x26
+	   MOV R0, #(0x28 :OR: 0x7)
 	   BL  LCD_Cmd_Out
-	   MOV R4, #0x81
+	   MOV R3, #70
+	   BL  DelayMs
+	   MOV R0, #0x26
 	   BL  LCD_Cmd_Out
-	   MOV R4, #31
+	   MOV R0, #0x81
 	   BL  LCD_Cmd_Out
-	   MOV R4, #0x40
+	   MOV R0, #31
 	   BL  LCD_Cmd_Out
-	   MOV R4, #0xAF
+	   MOV R0, #0x40
 	   BL  LCD_Cmd_Out
-	   LDR R0, =CSport
-	   LDR R1, [R0]
-	   ORR R1, #(CSbit)      ; CSwrite(1)
-	   STR R1, [R0]
+	   MOV R0, #0xAF
+	   BL  LCD_Cmd_Out
+	   LDR R1, =CSport
+	   LDR R2, [R1]
+	   ORR R2, #(CSbit)      ; CSwrite(1)
+	   STR R2, [R1]
 		 
-		 MOV R4, #5       ; set contrast
-	   MOV R5, #50
+		 MOV R0, #5       ; set contrast
+	   MOV R1, #50
 	   BL LCD_Contrast
-		 MOV R4, #0xF0
+		 MOV R0, #0xF0
 	   BL  LCD_Cmd_Out
 
 	   POP {LR, R0-R5}
@@ -91,7 +123,7 @@ LCD_Init
 
 	   
 LCD_Cmd_Out	   
-       ; char in R4
+       ; char in R0
 	   PUSH {LR, R0-R5}
 	   AND R0, #0xFF
 	   LDR R1, =A0port
@@ -175,8 +207,8 @@ CtNt2  ORR R0, #0x20
 	   BX LR
 
 LCD_Pixel
-       ; R0 = x = 1-128, R1 = y= 1-64  R2= R2
-	   PUSH {LR, R3-R2}
+       ; R0 = x = 1-128, R1 = y= 1-64  R2= colour
+	   PUSH {LR, R0-R7}
 	   SUB R0, #1  ; x
 	   CMP R1, #33
 	   BLO top
@@ -199,25 +231,25 @@ pixnxt 	   SUB R1, #1  ; y
 	   B pxend
 blkpx  BIC  R7, R3           ; lcd_mat[R6] bic
 pxend  STRB R7, [R4,R6]                   
-       POP {LR, R3-R2}
+       POP {LR, R0-R7}
 	   BX LR
 
 LCD_Refresh
 	   PUSH {LR, R0-R7}
 	   MOV R6, #0        ; y=R6, x=R5
 yAgn                        ; y loop
-       ORR R4, R6, #0xB0     ; R4=R6 | B0
+       ORR R0, R6, #0xB0     ; R4=R6 | B0
 	   BL LCD_Cmd_Out
-       MOV R4, #0
+       MOV R0, #0
        BL LCD_Cmd_Out
-	   MOV R4, #0x10
+	   MOV R0, #0x10
 	   BL LCD_Cmd_Out
 	   
 	   MOV R5, #0          
 xAgn   LDR R1, =LCDmat     ;x loop
        MOV R0, #128
 	   MLA R3, R6, R0, R5   ; R3=y*128 +x
-	   LDRB R4, [R1,R3]
+	   LDRB R0, [R1,R3]
        BL LCD_Dat_Out
 	   ADD R5, #1          ; inc x
 	   CMP R5, #128
@@ -246,5 +278,3 @@ blagn  STRB R2, [R1, R0]
 
        ALIGN      
        END  
-           
-           

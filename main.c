@@ -1,8 +1,7 @@
 #include "registers.h"
 #include "tetris.c"
-//#include "LCD_Use.c"
 
-unsigned char charmap[1056];
+unsigned char LCDmat[1056];
 
 extern void LCD_Init(void);
 extern void LCD_Cmd_Out(unsigned int);
@@ -12,18 +11,28 @@ extern void LCD_Contrast(unsigned int, unsigned int);
 extern void LCD_Pixel(unsigned int, unsigned int, unsigned int);
 extern void LCD_Refresh(void);
 extern void LCD_Blank(void);
+extern void Setup_GPIOA_UART(void);
+extern void DelayMs_R0(unsigned int);
+
+extern void GPIO_Setup_A(void);
+extern void GPIO_Setup_E(void);
 
 void dpad_setup(void);
 void lcd_setup(void);
 
 int main(){
 	dpad_setup();
-	lcd_setup();
+	GPIO_Setup_A();
+	GPIO_Setup_E();
+	LCD_Blank();
 	LCD_Init();
-	LCD_Test();
-	while(1){
-		//DelayMs(1000);
-		//update();
+	LCD_Blank();
+	LCD_Refresh();
+	LCD_Blank();
+
+	while(1)
+	{
+		WaitForInterrupt();
 	}
 }
 
@@ -52,13 +61,13 @@ void dpad_setup(){
 	GPIOB_IEV &= ~(PB);
 	GPIOB_IM |= PB;
 	
-	NVIC_EN0 |= (1<<17);
+	NVIC_EN0 |= (1);
 		
 	__asm("CPSIE I");
 }
 
 void ISR_PORTB(){
-	 __asm("MOV R11 ,#0xFFFF");
+	LCD_Dat_Out(0xFFFF);
 }
 
 void lcd_setup(){
