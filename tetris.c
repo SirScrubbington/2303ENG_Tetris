@@ -1,6 +1,17 @@
 #define X 10
 #define Y 20
 
+extern void LCD_Init(void);
+extern void LCD_Cmd_Out(unsigned int);
+extern void LCD_Dat_Out(unsigned int);
+extern void LCD_Char_Out(unsigned int);
+extern void LCD_Contrast(unsigned int, unsigned int);
+extern void LCD_Pixel(unsigned int, unsigned int, unsigned int);
+extern void LCD_Refresh(void);
+extern void LCD_Blank(void);
+extern void Setup_GPIOA_UART(void);
+extern void DelayMs_R0(unsigned int);
+
 typedef struct pt {
 	int x;
 	int y;
@@ -148,6 +159,16 @@ int update(){
 	
 	for(i=0;i<3;i++){
 		set_position_relative(&block[i],0,1);
+	}
+	
+	LCD_Blank();
+	
+	for(i=0;i<Y;i++){
+		for(j=0;j<X;j++){
+			if (board[i][j]==1){
+				LCD_Pixel(i,j,1);
+			}
+		}
 	}
 	return 0;
 }

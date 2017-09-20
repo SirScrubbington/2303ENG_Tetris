@@ -601,6 +601,12 @@ DisableInterrupts
 EnableInterrupts
         CPSIE  I
         BX     LR
+		
+;*********** WaitForInterrupt ************************
+; go to low power mode while waiting for the next interrupt
+; inputs:  none
+; outputs: none
+WaitForInterruptS
 
 ;*********** StartCritical ************************
 ; make a copy of previous I bit, disable interrupts
