@@ -1,0 +1,10 @@
+Tera Term Configuration Information:
+
+Port: COM3
+Baud Rate: 9600
+Data: 7 Bit
+Parity: None
+Stop: 1 Bit
+Flow Control: None
+
+No Transmit Delay

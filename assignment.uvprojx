@@ -395,21 +395,6 @@
               <FileType>2</FileType>
               <FilePath>.\Startup.s</FilePath>
             </File>
-            <File>
-              <FileName>LCD_Use.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\LCD_Use.s</FilePath>
-            </File>
-            <File>
-              <FileName>libfunctions.o</FileName>
-              <FileType>3</FileType>
-              <FilePath>.\libfunctions.o</FilePath>
-            </File>
-            <File>
-              <FileName>gpio_setup.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\gpio_setup.s</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>

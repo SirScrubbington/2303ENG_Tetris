@@ -1,3 +1,15 @@
+	
+#define TIMER4_CFG (*((volatile unsigned long *)0x40030000))
+#define TIMER4_TAMR (*((volatile unsigned long *)0x40030004))
+#define TIMER4_TAILR (*((volatile unsigned long *)0x40030028))
+#define TIMER4_TAMATCH (*((volatile unsigned long *)0x40030030))
+#define TIMER4_CTL (*((volatile unsigned long *)0x4003000C))
+
+#define SYSCTL_RCGCTIMER (*((volatile unsigned long *)0x400FE604))
+#define SYSCTL_PRTIMER (*((volatile unsigned long *)0x400FEA04))
+#define SYSCTL_RCGCWTIMER (*((volatile unsigned long *)0x400FE65C))
+#define SYSCTL_PRWTIMER (*((volatile unsigned long *)0x400FEA5C))
+
 #define SYSCTL_RCGUART 	(*((volatile unsigned long *)0x400FE618))
 #define SYSCTL_PRUART 	(*((volatile unsigned long *)0x400FEA18))
 #define SYSCTL_RCGCGPIO 	(*((volatile unsigned long *)0x400FE608))
@@ -42,6 +54,25 @@
 #define GPIOB_RIS 	(*((unsigned long *)0x40005414))
 #define GPIOB_MIS  	(*((unsigned long *)0x40005418))
 
+#define GPIOC_DATA	(*((unsigned long *)0x400063FC))
+#define GPIOC_DIR 	(*((volatile unsigned long *)0x40006400))
+#define GPIOC_AFSEL 	(*((volatile unsigned long *)0x40006420))
+#define GPIOC_PCTL 	(*((volatile unsigned long *)0x4000652C))
+#define GPIOC_AMSEL 	(*((volatile unsigned long *)0x40006528))
+#define GPIOC_PUR 	(*((volatile unsigned long *)0x40006510))
+#define GPIOC_PDR 	(*((volatile unsigned long *)0x40006514))
+#define GPIOC_DR8R 	(*((volatile unsigned long *)0x40006508))
+#define GPIOC_DEN 	(*((volatile unsigned long *)0x4000651C))
+#define GPIOC_ICR  	(*((unsigned long *)0x4000641C))
+	
+#define GPIOC_IS  	(*((unsigned long *)0x40006404))
+#define GPIOC_IBE  	(*((unsigned long *)0x40006408))
+#define GPIOC_IEV 	(*((unsigned long *)0x4000640C))
+#define GPIOC_IM  	(*((unsigned long *)0x40006410))
+#define GPIOC_ICR  	(*((unsigned long *)0x4000641C))
+#define GPIOC_RIS 	(*((unsigned long *)0x40006414))
+#define GPIOC_MIS  	(*((unsigned long *)0x40006418))
+
 #define GPIOE_DATA	(*((unsigned long *)0x400243FC))
 #define GPIOE_DIR 	(*((volatile unsigned long *)0x40024400))
 #define GPIOE_AFSEL 	(*((volatile unsigned long *)0x40024420))
@@ -72,6 +103,7 @@
 #define UART0_FBRD 	(*((volatile unsigned long *)0x4000C028))
 #define UART0_LCRH 	(*((volatile unsigned long *)0x4000C02C))
 #define UART0_CTL 	(*((volatile unsigned long *)0x4000C030))
+#define UART0_DATA (*((volatile unsigned long *)0x4000C3FC))
 
 #define TIMER1_TAMATCH 	(*((volatile unsigned long *)0x40031030))
 #define TIMER1_CTL 	(*((volatile unsigned long *)0x4003100C))
