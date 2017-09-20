@@ -938,81 +938,88 @@ ARM Macro Assembler    Page 15
   602 0000002C B662            CPSIE            I
   603 0000002E 4770            BX               LR
   604 00000030         
-  605 00000030         ;*********** StartCritical ************************
-  606 00000030         ; make a copy of previous I bit, disable interrupts
-  607 00000030         ; inputs:  none
-  608 00000030         ; outputs: previous I bit
-  609 00000030         StartCritical
-  610 00000030 F3EF 8010       MRS              R0, PRIMASK ; save old status
-  611 00000034 B672            CPSID            I           ; mask all (except 
-                                                            faults)
-  612 00000036 4770            BX               LR
-  613 00000038         
-  614 00000038         ;*********** EndCritical ************************
-  615 00000038         ; using the copy of previous I bit, restore I bit to pre
-                       vious value
-  616 00000038         ; inputs:  previous I bit
-  617 00000038         ; outputs: none
-  618 00000038         EndCritical
-  619 00000038 F380 8810       MSR              PRIMASK, R0
-  620 0000003C 4770            BX               LR
-  621 0000003E         
-  622 0000003E         ;*********** WaitForInterrupt ************************
-  623 0000003E         ; go to low power mode while waiting for the next interr
+  605 00000030         ;*********** WaitForInterrupt ************************
+  606 00000030         ; go to low power mode while waiting for the next interr
                        upt
-  624 0000003E         ; inputs:  none
-  625 0000003E         ; outputs: none
-  626 0000003E         WaitForInterrupt
-  627 0000003E BF30            WFI
-  628 00000040 4770            BX               LR
-  629 00000042         
-  630 00000042         ;*******************************************************
-                       ***********************
-  631 00000042         ;
-  632 00000042         ; The function expected of the C library startup code fo
-                       r defining the stack
-  633 00000042         ; and heap memory locations.  For the C library version 
-                       of the startup code,
+  607 00000030         ; inputs:  none
+  608 00000030         ; outputs: none
+  609 00000030         WaitForInterruptS
+  610 00000030         
+  611 00000030         ;*********** StartCritical ************************
+  612 00000030         ; make a copy of previous I bit, disable interrupts
+  613 00000030         ; inputs:  none
+  614 00000030         ; outputs: previous I bit
+  615 00000030         StartCritical
+  616 00000030 F3EF 8010       MRS              R0, PRIMASK ; save old status
+  617 00000034 B672            CPSID            I           ; mask all (except 
+                                                            faults)
+  618 00000036 4770            BX               LR
+  619 00000038         
+  620 00000038         ;*********** EndCritical ************************
+  621 00000038         ; using the copy of previous I bit, restore I bit to pre
+                       vious value
+  622 00000038         ; inputs:  previous I bit
+  623 00000038         ; outputs: none
+  624 00000038         EndCritical
+  625 00000038 F380 8810       MSR              PRIMASK, R0
+  626 0000003C 4770            BX               LR
+  627 0000003E         
+  628 0000003E         ;*********** WaitForInterrupt ************************
+  629 0000003E         ; go to low power mode while waiting for the next interr
+                       upt
+  630 0000003E         ; inputs:  none
+  631 0000003E         ; outputs: none
+  632 0000003E         WaitForInterrupt
+  633 0000003E BF30            WFI
+  634 00000040 4770            BX               LR
+  635 00000042         
 
 
 
 ARM Macro Assembler    Page 16 
 
 
-  634 00000042         ; provide this function so that the C library initializa
+  636 00000042         ;*******************************************************
+                       ***********************
+  637 00000042         ;
+  638 00000042         ; The function expected of the C library startup code fo
+                       r defining the stack
+  639 00000042         ; and heap memory locations.  For the C library version 
+                       of the startup code,
+  640 00000042         ; provide this function so that the C library initializa
                        tion code can find out
-  635 00000042         ; the location of the stack and heap.
-  636 00000042         ;
-  637 00000042         ;*******************************************************
+  641 00000042         ; the location of the stack and heap.
+  642 00000042         ;
+  643 00000042         ;*******************************************************
                        ***********************
-  638 00000042                 IF               :DEF: __MICROLIB
-  643 00000042                 IMPORT           __use_two_region_memory
-  644 00000042                 EXPORT           __user_initial_stackheap
-  645 00000042         __user_initial_stackheap
-  646 00000042 4802            LDR              R0, =Heap_Mem
-  647 00000044 4902            LDR              R1, =(Stack_Mem + Stack_Size)
-  648 00000046 4A01            LDR              R2, =(Heap_Mem + Heap_Size)
-  649 00000048 4B02            LDR              R3, =Stack_Mem
-  650 0000004A 4770            BX               LR
-  651 0000004C                 ENDIF
-  652 0000004C         
-  653 0000004C         ;*******************************************************
+  644 00000042                 IF               :DEF: __MICROLIB
+  649 00000042                 IMPORT           __use_two_region_memory
+  650 00000042                 EXPORT           __user_initial_stackheap
+  651 00000042         __user_initial_stackheap
+  652 00000042 4802            LDR              R0, =Heap_Mem
+  653 00000044 4902            LDR              R1, =(Stack_Mem + Stack_Size)
+  654 00000046 4A01            LDR              R2, =(Heap_Mem + Heap_Size)
+  655 00000048 4B02            LDR              R3, =Stack_Mem
+  656 0000004A 4770            BX               LR
+  657 0000004C                 ENDIF
+  658 0000004C         
+  659 0000004C         ;*******************************************************
                        ***********************
-  654 0000004C         ;
-  655 0000004C         ; Make sure the end of this section is aligned.
-  656 0000004C         ;
-  657 0000004C         ;*******************************************************
+  660 0000004C         ;
+  661 0000004C         ; Make sure the end of this section is aligned.
+  662 0000004C         ;
+  663 0000004C         ;*******************************************************
                        ***********************
-  658 0000004C                 ALIGN
-  659 0000004C         
-  660 0000004C         ;*******************************************************
+  664 0000004C                 ALIGN
+  665 0000004C         
+  666 0000004C         ;*******************************************************
                        ***********************
-  661 0000004C         ;
-  662 0000004C         ; Tell the assembler that we're done.
-  663 0000004C         ;
-  664 0000004C         ;*******************************************************
+  667 0000004C         ;
+  668 0000004C         ; Tell the assembler that we're done.
+  669 0000004C         ;
+  670 0000004C         ;*******************************************************
                        ***********************
-  665 0000004C                 END
+  671 0000004C                 END
               00000000 
               00000400 
               00000000 
@@ -1041,8 +1048,8 @@ Symbol: Stack_Mem
    Definitions
       At line 35 in file Startup.s
    Uses
-      At line 647 in file Startup.s
-      At line 649 in file Startup.s
+      At line 653 in file Startup.s
+      At line 655 in file Startup.s
 
 __initial_sp 00000400
 
@@ -1073,8 +1080,8 @@ Symbol: Heap_Mem
    Definitions
       At line 47 in file Startup.s
    Uses
-      At line 646 in file Startup.s
-      At line 648 in file Startup.s
+      At line 652 in file Startup.s
+      At line 654 in file Startup.s
 
 __heap_base 00000000
 
@@ -1316,7 +1323,7 @@ EndCritical 00000038
 
 Symbol: EndCritical
    Definitions
-      At line 618 in file Startup.s
+      At line 624 in file Startup.s
    Uses
       At line 586 in file Startup.s
 Comment: EndCritical used once
@@ -1967,7 +1974,7 @@ StartCritical 00000030
 
 Symbol: StartCritical
    Definitions
-      At line 609 in file Startup.s
+      At line 615 in file Startup.s
    Uses
       At line 585 in file Startup.s
 Comment: StartCritical used once
@@ -2353,13 +2360,13 @@ WaitForInterrupt 0000003E
 
 Symbol: WaitForInterrupt
    Definitions
-      At line 626 in file Startup.s
+      At line 632 in file Startup.s
    Uses
       At line 587 in file Startup.s
 Comment: WaitForInterrupt used once
-__user_initial_stackheap 00000042
+WaitForInterruptS 00000030
 
-Symbol: __user_initial_stackheap
+Symbol: WaitForInterruptS
    Definitions
 
 
@@ -2367,11 +2374,19 @@ Symbol: __user_initial_stackheap
 ARM Macro Assembler    Page 20 Alphabetic symbol ordering
 Relocatable symbols
 
-      At line 645 in file Startup.s
+      At line 609 in file Startup.s
    Uses
-      At line 644 in file Startup.s
+      None
+Comment: WaitForInterruptS unused
+__user_initial_stackheap 00000042
+
+Symbol: __user_initial_stackheap
+   Definitions
+      At line 651 in file Startup.s
+   Uses
+      At line 650 in file Startup.s
 Comment: __user_initial_stackheap used once
-126 symbols
+127 symbols
 
 
 
@@ -2385,7 +2400,7 @@ Symbol: Heap_Size
       At line 43 in file Startup.s
    Uses
       At line 47 in file Startup.s
-      At line 648 in file Startup.s
+      At line 654 in file Startup.s
 
 Stack_Size 00000400
 
@@ -2394,7 +2409,7 @@ Symbol: Stack_Size
       At line 31 in file Startup.s
    Uses
       At line 35 in file Startup.s
-      At line 647 in file Startup.s
+      At line 653 in file Startup.s
 
 __Vectors_Size 0000026C
 
@@ -2431,9 +2446,9 @@ __use_two_region_memory 00000000
 
 Symbol: __use_two_region_memory
    Definitions
-      At line 643 in file Startup.s
+      At line 649 in file Startup.s
    Uses
       None
 Comment: __use_two_region_memory unused
 3 symbols
-480 symbols in table
+481 symbols in table
