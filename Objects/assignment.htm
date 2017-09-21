@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\assignment.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\assignment.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Thu Sep 21 02:42:53 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Thu Sep 21 15:19:04 2017
 <BR><P>
 <H3>Maximum Stack Usage =         72 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -825,7 +825,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Blank
 </UL>
 
-<P><STRONG><a name="[a1]"></a>dpad_setup</STRONG> (Thumb, 144 bytes, Stack size 0 bytes, main.o(i.dpad_setup))
+<P><STRONG><a name="[a2]"></a>dpad_setup</STRONG> (Thumb, 144 bytes, Stack size 0 bytes, main.o(i.dpad_setup))
 <BR><BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -841,25 +841,25 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_refresh
 </UL>
 
-<P><STRONG><a name="[a2]"></a>lcd_setup</STRONG> (Thumb, 154 bytes, Stack size 0 bytes, main.o(i.lcd_setup))
+<P><STRONG><a name="[a3]"></a>lcd_setup</STRONG> (Thumb, 154 bytes, Stack size 0 bytes, main.o(i.lcd_setup))
 <BR><BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8c]"></a>main</STRONG> (Thumb, 322 bytes, Stack size 28 bytes, main.o(i.main))
+<P><STRONG><a name="[8c]"></a>main</STRONG> (Thumb, 306 bytes, Stack size 28 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = main &rArr; LCD_Blank &rArr; LCD_Refresh &rArr; LCD_Dat_Out &rArr; LCD_Char_Out
 </UL>
-<BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_char
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_bullets
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_setup
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start_game
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spawn_enemy
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spawn_bullets
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_board
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;newl
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;move_enemies
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_setup
+<BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_char
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_bullets
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_setup
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start_game
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spawn_enemy
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spawn_bullets
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_board
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;newl
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;move_enemies
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_setup
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_refresh
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dpad_setup
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dpad_setup
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Init
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Dat_Out
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Blank
@@ -868,7 +868,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[a6]"></a>move_enemies</STRONG> (Thumb, 80 bytes, Stack size 0 bytes, main.o(i.move_enemies))
+<P><STRONG><a name="[a7]"></a>move_enemies</STRONG> (Thumb, 80 bytes, Stack size 0 bytes, main.o(i.move_enemies))
 <BR><BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -880,20 +880,20 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ISR_PORTB
 </UL>
 
-<P><STRONG><a name="[ab]"></a>newl</STRONG> (Thumb, 16 bytes, Stack size 4 bytes, main.o(i.newl))
+<P><STRONG><a name="[a4]"></a>newl</STRONG> (Thumb, 16 bytes, Stack size 4 bytes, main.o(i.newl))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = newl
 </UL>
-<BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_char
+<BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_char
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_board
+<BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_board
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a9]"></a>print_board</STRONG> (Thumb, 166 bytes, Stack size 8 bytes, main.o(i.print_board))
+<P><STRONG><a name="[aa]"></a>print_board</STRONG> (Thumb, 194 bytes, Stack size 8 bytes, main.o(i.print_board))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = print_board &rArr; newl
 </UL>
-<BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_char
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;newl
+<BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_char
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;newl
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -902,33 +902,33 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ISR_PORTB
 </UL>
 
-<P><STRONG><a name="[a7]"></a>spawn_bullets</STRONG> (Thumb, 114 bytes, Stack size 8 bytes, main.o(i.spawn_bullets))
+<P><STRONG><a name="[a8]"></a>spawn_bullets</STRONG> (Thumb, 114 bytes, Stack size 8 bytes, main.o(i.spawn_bullets))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = spawn_bullets
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a5]"></a>spawn_enemy</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, main.o(i.spawn_enemy))
+<P><STRONG><a name="[a6]"></a>spawn_enemy</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, main.o(i.spawn_enemy))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = spawn_enemy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a4]"></a>start_game</STRONG> (Thumb, 74 bytes, Stack size 0 bytes, main.o(i.start_game))
+<P><STRONG><a name="[a5]"></a>start_game</STRONG> (Thumb, 74 bytes, Stack size 0 bytes, main.o(i.start_game))
 <BR><BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a3]"></a>uart_setup</STRONG> (Thumb, 196 bytes, Stack size 0 bytes, main.o(i.uart_setup))
+<P><STRONG><a name="[a1]"></a>uart_setup</STRONG> (Thumb, 196 bytes, Stack size 0 bytes, main.o(i.uart_setup))
 <BR><BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a8]"></a>update_bullets</STRONG> (Thumb, 148 bytes, Stack size 0 bytes, main.o(i.update_bullets))
+<P><STRONG><a name="[a9]"></a>update_bullets</STRONG> (Thumb, 148 bytes, Stack size 0 bytes, main.o(i.update_bullets))
 <BR><BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[aa]"></a>write_char</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, main.o(i.write_char))
-<BR><BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_board
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;newl
+<P><STRONG><a name="[ab]"></a>write_char</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, main.o(i.write_char))
+<BR><BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_board
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;newl
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
