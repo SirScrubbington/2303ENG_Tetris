@@ -1,4 +1,4 @@
-Component: ARM Compiler 5.06 update 5 (build 528) Tool: armlink [4d35e2]
+Component: ARM Compiler 5.06 update 4 (build 422) Tool: armlink [4d35d2]
 
 ==============================================================================
 
@@ -23,9 +23,10 @@ Section Cross References
     main.o(i.game_refresh) refers to main.o(.bss) for display
     main.o(i.game_refresh) refers to main.o(.data) for player
     main.o(i.gameover) refers to main.o(.data) for running
+    main.o(i.main) refers to main.o(i.uart_setup) for uart_setup
     main.o(i.main) refers to main.o(i.dpad_setup) for dpad_setup
     main.o(i.main) refers to main.o(i.lcd_setup) for lcd_setup
-    main.o(i.main) refers to main.o(i.uart_setup) for uart_setup
+    main.o(i.main) refers to main.o(i.newl) for newl
     main.o(i.main) refers to main.o(i.LCD_Blank) for LCD_Blank
     main.o(i.main) refers to main.o(i.LCD_Init) for LCD_Init
     main.o(i.main) refers to main.o(i.LCD_Dat_Out) for LCD_Dat_Out
@@ -38,7 +39,6 @@ Section Cross References
     main.o(i.main) refers to main.o(i.game_refresh) for game_refresh
     main.o(i.main) refers to main.o(i.print_board) for print_board
     main.o(i.main) refers to main.o(i.write_char) for write_char
-    main.o(i.main) refers to main.o(i.newl) for newl
     main.o(i.main) refers to main.o(.data) for running
     main.o(i.move_enemies) refers to main.o(.bss) for enmlst
     main.o(i.move_left) refers to main.o(.data) for player
@@ -46,8 +46,8 @@ Section Cross References
     main.o(i.newl) refers to main.o(i.write_char) for write_char
     main.o(i.print_board) refers to main.o(i.write_char) for write_char
     main.o(i.print_board) refers to main.o(i.newl) for newl
-    main.o(i.print_board) refers to main.o(.data) for lives
     main.o(i.print_board) refers to main.o(.bss) for display
+    main.o(i.print_board) refers to main.o(.data) for lives
     main.o(i.shoot) refers to main.o(.bss) for bltlst
     main.o(i.shoot) refers to main.o(.data) for player
     main.o(i.spawn_bullets) refers to main.o(.bss) for enmlst
@@ -304,20 +304,20 @@ Image Symbol Table
     i.gameover                               0x000008e0   Section        0  main.o(i.gameover)
     i.lcd_setup                              0x000008ec   Section        0  main.o(i.lcd_setup)
     i.main                                   0x000009a0   Section        0  main.o(i.main)
-    i.move_enemies                           0x00000b08   Section        0  main.o(i.move_enemies)
-    i.move_left                              0x00000b5c   Section        0  main.o(i.move_left)
-    i.move_right                             0x00000b74   Section        0  main.o(i.move_right)
-    i.newl                                   0x00000b8c   Section        0  main.o(i.newl)
-    i.print_board                            0x00000b9c   Section        0  main.o(i.print_board)
-    i.shoot                                  0x00000c4c   Section        0  main.o(i.shoot)
-    i.spawn_bullets                          0x00000c98   Section        0  main.o(i.spawn_bullets)
-    i.spawn_enemy                            0x00000d14   Section        0  main.o(i.spawn_enemy)
-    i.start_game                             0x00000d60   Section        0  main.o(i.start_game)
-    i.uart_setup                             0x00000dc0   Section        0  main.o(i.uart_setup)
-    i.update_bullets                         0x00000e98   Section        0  main.o(i.update_bullets)
-    i.write_char                             0x00000f34   Section        0  main.o(i.write_char)
-    x$fpl$fpinit                             0x00000f54   Section       10  fpinit.o(x$fpl$fpinit)
-    $v0                                      0x00000f54   Number         0  fpinit.o(x$fpl$fpinit)
+    i.move_enemies                           0x00000af8   Section        0  main.o(i.move_enemies)
+    i.move_left                              0x00000b4c   Section        0  main.o(i.move_left)
+    i.move_right                             0x00000b64   Section        0  main.o(i.move_right)
+    i.newl                                   0x00000b7c   Section        0  main.o(i.newl)
+    i.print_board                            0x00000b8c   Section        0  main.o(i.print_board)
+    i.shoot                                  0x00000c58   Section        0  main.o(i.shoot)
+    i.spawn_bullets                          0x00000ca4   Section        0  main.o(i.spawn_bullets)
+    i.spawn_enemy                            0x00000d20   Section        0  main.o(i.spawn_enemy)
+    i.start_game                             0x00000d6c   Section        0  main.o(i.start_game)
+    i.uart_setup                             0x00000dcc   Section        0  main.o(i.uart_setup)
+    i.update_bullets                         0x00000ea4   Section        0  main.o(i.update_bullets)
+    i.write_char                             0x00000f40   Section        0  main.o(i.write_char)
+    x$fpl$fpinit                             0x00000f60   Section       10  fpinit.o(x$fpl$fpinit)
+    $v0                                      0x00000f60   Number         0  fpinit.o(x$fpl$fpinit)
     .data                                    0x20000000   Section       24  main.o(.data)
     .bss                                     0x20000018   Section     4016  main.o(.bss)
     .bss                                     0x20000fc8   Section       96  libspace.o(.bss)
@@ -561,24 +561,24 @@ Image Symbol Table
     game_refresh                             0x00000725   Thumb Code   416  main.o(i.game_refresh)
     gameover                                 0x000008e1   Thumb Code     8  main.o(i.gameover)
     lcd_setup                                0x000008ed   Thumb Code   154  main.o(i.lcd_setup)
-    main                                     0x000009a1   Thumb Code   322  main.o(i.main)
-    move_enemies                             0x00000b09   Thumb Code    80  main.o(i.move_enemies)
-    move_left                                0x00000b5d   Thumb Code    20  main.o(i.move_left)
-    move_right                               0x00000b75   Thumb Code    20  main.o(i.move_right)
-    newl                                     0x00000b8d   Thumb Code    16  main.o(i.newl)
-    print_board                              0x00000b9d   Thumb Code   166  main.o(i.print_board)
-    shoot                                    0x00000c4d   Thumb Code    68  main.o(i.shoot)
-    spawn_bullets                            0x00000c99   Thumb Code   114  main.o(i.spawn_bullets)
-    spawn_enemy                              0x00000d15   Thumb Code    70  main.o(i.spawn_enemy)
-    start_game                               0x00000d61   Thumb Code    74  main.o(i.start_game)
-    uart_setup                               0x00000dc1   Thumb Code   196  main.o(i.uart_setup)
-    update_bullets                           0x00000e99   Thumb Code   148  main.o(i.update_bullets)
-    write_char                               0x00000f35   Thumb Code    26  main.o(i.write_char)
-    _fp_init                                 0x00000f55   Thumb Code    10  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x00000f5d   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x00000f5d   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    Region$$Table$$Base                      0x00000f60   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00000f80   Number         0  anon$$obj.o(Region$$Table)
+    main                                     0x000009a1   Thumb Code   306  main.o(i.main)
+    move_enemies                             0x00000af9   Thumb Code    80  main.o(i.move_enemies)
+    move_left                                0x00000b4d   Thumb Code    20  main.o(i.move_left)
+    move_right                               0x00000b65   Thumb Code    20  main.o(i.move_right)
+    newl                                     0x00000b7d   Thumb Code    16  main.o(i.newl)
+    print_board                              0x00000b8d   Thumb Code   194  main.o(i.print_board)
+    shoot                                    0x00000c59   Thumb Code    68  main.o(i.shoot)
+    spawn_bullets                            0x00000ca5   Thumb Code   114  main.o(i.spawn_bullets)
+    spawn_enemy                              0x00000d21   Thumb Code    70  main.o(i.spawn_enemy)
+    start_game                               0x00000d6d   Thumb Code    74  main.o(i.start_game)
+    uart_setup                               0x00000dcd   Thumb Code   196  main.o(i.uart_setup)
+    update_bullets                           0x00000ea5   Thumb Code   148  main.o(i.update_bullets)
+    write_char                               0x00000f41   Thumb Code    26  main.o(i.write_char)
+    _fp_init                                 0x00000f61   Thumb Code    10  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x00000f69   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x00000f69   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    Region$$Table$$Base                      0x00000f6c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00000f8c   Number         0  anon$$obj.o(Region$$Table)
     score                                    0x20000000   Data           4  main.o(.data)
     lives                                    0x20000004   Data           4  main.o(.data)
     direction                                0x20000008   Data           4  main.o(.data)
@@ -600,117 +600,117 @@ Memory Map of the image
 
   Image Entry point : 0x0000030d
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00000f98, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00000fa4, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000f80, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Base: 0x00000000, Size: 0x00000f8c, Max: 0xffffffff, ABSOLUTE)
 
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x00000000   0x00000000   0x0000026c   Code   RO          201    RESET               startup.o
-    0x0000026c   0x0000026c   0x00000008   Code   RO          213  * !!!main             c_w.l(__main.o)
-    0x00000274   0x00000274   0x00000034   Code   RO          370    !!!scatter          c_w.l(__scatter.o)
-    0x000002a8   0x000002a8   0x0000001a   Code   RO          372    !!handler_copy      c_w.l(__scatter_copy.o)
-    0x000002c2   0x000002c2   0x00000002   PAD
-    0x000002c4   0x000002c4   0x0000001c   Code   RO          374    !!handler_zi        c_w.l(__scatter_zi.o)
-    0x000002e0   0x000002e0   0x00000002   Code   RO          240    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
-    0x000002e2   0x000002e2   0x00000004   Code   RO          246    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          249    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          252    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          254    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          256    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          259    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          261    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          263    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          265    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          267    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          269    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          271    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          273    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          275    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          277    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          279    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          283    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          285    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          287    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000000   Code   RO          289    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
-    0x000002e6   0x000002e6   0x00000002   Code   RO          290    .ARM.Collect$$libinit$$00000033  c_w.l(libinit2.o)
-    0x000002e8   0x000002e8   0x00000002   Code   RO          310    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
-    0x000002ea   0x000002ea   0x00000000   Code   RO          323    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
-    0x000002ea   0x000002ea   0x00000000   Code   RO          325    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
-    0x000002ea   0x000002ea   0x00000000   Code   RO          328    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
-    0x000002ea   0x000002ea   0x00000000   Code   RO          331    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
-    0x000002ea   0x000002ea   0x00000000   Code   RO          333    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
-    0x000002ea   0x000002ea   0x00000000   Code   RO          336    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
-    0x000002ea   0x000002ea   0x00000002   Code   RO          337    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
-    0x000002ec   0x000002ec   0x00000000   Code   RO          215    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
-    0x000002ec   0x000002ec   0x00000000   Code   RO          217    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
-    0x000002ec   0x000002ec   0x00000006   Code   RO          229    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
-    0x000002f2   0x000002f2   0x00000000   Code   RO          219    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
-    0x000002f2   0x000002f2   0x00000004   Code   RO          220    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
-    0x000002f6   0x000002f6   0x00000000   Code   RO          222    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
-    0x000002f6   0x000002f6   0x00000008   Code   RO          223    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
-    0x000002fe   0x000002fe   0x00000002   Code   RO          244    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
-    0x00000300   0x00000300   0x00000000   Code   RO          292    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
-    0x00000300   0x00000300   0x00000004   Code   RO          293    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
-    0x00000304   0x00000304   0x00000006   Code   RO          294    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
-    0x0000030a   0x0000030a   0x00000002   PAD
-    0x0000030c   0x0000030c   0x00000058   Code   RO          202  * .text               startup.o
-    0x00000364   0x00000364   0x00000006   Code   RO          211    .text               c_w.l(heapauxi.o)
-    0x0000036a   0x0000036a   0x0000004a   Code   RO          231    .text               c_w.l(sys_stackheap_outer.o)
-    0x000003b4   0x000003b4   0x00000012   Code   RO          233    .text               c_w.l(exit.o)
-    0x000003c6   0x000003c6   0x00000002   PAD
-    0x000003c8   0x000003c8   0x00000008   Code   RO          241    .text               c_w.l(libspace.o)
-    0x000003d0   0x000003d0   0x0000000c   Code   RO          302    .text               c_w.l(sys_exit.o)
-    0x000003dc   0x000003dc   0x00000002   Code   RO          313    .text               c_w.l(use_no_semi.o)
-    0x000003de   0x000003de   0x00000000   Code   RO          315    .text               c_w.l(indicate_semi.o)
-    0x000003de   0x000003de   0x00000018   Code   RO            1    i.DelayMs           main.o
-    0x000003f6   0x000003f6   0x00000002   PAD
-    0x000003f8   0x000003f8   0x00000068   Code   RO            2    i.ISR_PORTB         main.o
-    0x00000460   0x00000460   0x00000020   Code   RO            3    i.LCD_Blank         main.o
-    0x00000480   0x00000480   0x0000007c   Code   RO            4    i.LCD_Char_Out      main.o
-    0x000004fc   0x000004fc   0x00000024   Code   RO            5    i.LCD_Cmd_Out       main.o
-    0x00000520   0x00000520   0x0000002e   Code   RO            6    i.LCD_Contrast      main.o
-    0x0000054e   0x0000054e   0x00000002   PAD
-    0x00000550   0x00000550   0x00000024   Code   RO            7    i.LCD_Dat_Out       main.o
-    0x00000574   0x00000574   0x000000c8   Code   RO            8    i.LCD_Init          main.o
-    0x0000063c   0x0000063c   0x00000044   Code   RO           10    i.LCD_Refresh       main.o
-    0x00000680   0x00000680   0x000000a4   Code   RO           11    i.dpad_setup        main.o
-    0x00000724   0x00000724   0x000001bc   Code   RO           12    i.game_refresh      main.o
-    0x000008e0   0x000008e0   0x0000000c   Code   RO           13    i.gameover          main.o
-    0x000008ec   0x000008ec   0x000000b4   Code   RO           14    i.lcd_setup         main.o
-    0x000009a0   0x000009a0   0x00000168   Code   RO           15    i.main              main.o
-    0x00000b08   0x00000b08   0x00000054   Code   RO           16    i.move_enemies      main.o
-    0x00000b5c   0x00000b5c   0x00000018   Code   RO           17    i.move_left         main.o
-    0x00000b74   0x00000b74   0x00000018   Code   RO           18    i.move_right        main.o
-    0x00000b8c   0x00000b8c   0x00000010   Code   RO           19    i.newl              main.o
-    0x00000b9c   0x00000b9c   0x000000b0   Code   RO           20    i.print_board       main.o
-    0x00000c4c   0x00000c4c   0x0000004c   Code   RO           23    i.shoot             main.o
-    0x00000c98   0x00000c98   0x0000007c   Code   RO           24    i.spawn_bullets     main.o
-    0x00000d14   0x00000d14   0x0000004c   Code   RO           25    i.spawn_enemy       main.o
-    0x00000d60   0x00000d60   0x00000060   Code   RO           26    i.start_game        main.o
-    0x00000dc0   0x00000dc0   0x000000d8   Code   RO           27    i.uart_setup        main.o
-    0x00000e98   0x00000e98   0x0000009c   Code   RO           28    i.update_bullets    main.o
-    0x00000f34   0x00000f34   0x00000020   Code   RO           29    i.write_char        main.o
-    0x00000f54   0x00000f54   0x0000000a   Code   RO          300    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x00000f5e   0x00000f5e   0x00000002   PAD
-    0x00000f60   0x00000f60   0x00000020   Data   RO          368    Region$$Table       anon$$obj.o
-
-
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00000f80, Size: 0x00000018, Max: 0xffffffff, ABSOLUTE)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x20000000   0x00000f80   0x00000018   Data   RW           31    .data               main.o
+    0x00000000   0x0000026c   Code   RO          201    RESET               startup.o
+    0x0000026c   0x00000008   Code   RO          213  * !!!main             c_w.l(__main.o)
+    0x00000274   0x00000034   Code   RO          370    !!!scatter          c_w.l(__scatter.o)
+    0x000002a8   0x0000001a   Code   RO          372    !!handler_copy      c_w.l(__scatter_copy.o)
+    0x000002c2   0x00000002   PAD
+    0x000002c4   0x0000001c   Code   RO          374    !!handler_zi        c_w.l(__scatter_zi.o)
+    0x000002e0   0x00000002   Code   RO          240    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x000002e2   0x00000004   Code   RO          246    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          249    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          252    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          254    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          256    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          259    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          261    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          263    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          265    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          267    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          269    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          271    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          273    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          275    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          277    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          279    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          283    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          285    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          287    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO          289    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
+    0x000002e6   0x00000002   Code   RO          290    .ARM.Collect$$libinit$$00000033  c_w.l(libinit2.o)
+    0x000002e8   0x00000002   Code   RO          310    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x000002ea   0x00000000   Code   RO          323    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
+    0x000002ea   0x00000000   Code   RO          325    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
+    0x000002ea   0x00000000   Code   RO          328    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
+    0x000002ea   0x00000000   Code   RO          331    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
+    0x000002ea   0x00000000   Code   RO          333    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
+    0x000002ea   0x00000000   Code   RO          336    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
+    0x000002ea   0x00000002   Code   RO          337    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
+    0x000002ec   0x00000000   Code   RO          215    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
+    0x000002ec   0x00000000   Code   RO          217    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
+    0x000002ec   0x00000006   Code   RO          229    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
+    0x000002f2   0x00000000   Code   RO          219    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
+    0x000002f2   0x00000004   Code   RO          220    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
+    0x000002f6   0x00000000   Code   RO          222    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
+    0x000002f6   0x00000008   Code   RO          223    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
+    0x000002fe   0x00000002   Code   RO          244    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x00000300   0x00000000   Code   RO          292    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x00000300   0x00000004   Code   RO          293    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x00000304   0x00000006   Code   RO          294    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x0000030a   0x00000002   PAD
+    0x0000030c   0x00000058   Code   RO          202  * .text               startup.o
+    0x00000364   0x00000006   Code   RO          211    .text               c_w.l(heapauxi.o)
+    0x0000036a   0x0000004a   Code   RO          231    .text               c_w.l(sys_stackheap_outer.o)
+    0x000003b4   0x00000012   Code   RO          233    .text               c_w.l(exit.o)
+    0x000003c6   0x00000002   PAD
+    0x000003c8   0x00000008   Code   RO          241    .text               c_w.l(libspace.o)
+    0x000003d0   0x0000000c   Code   RO          302    .text               c_w.l(sys_exit.o)
+    0x000003dc   0x00000002   Code   RO          313    .text               c_w.l(use_no_semi.o)
+    0x000003de   0x00000000   Code   RO          315    .text               c_w.l(indicate_semi.o)
+    0x000003de   0x00000018   Code   RO            1    i.DelayMs           main.o
+    0x000003f6   0x00000002   PAD
+    0x000003f8   0x00000068   Code   RO            2    i.ISR_PORTB         main.o
+    0x00000460   0x00000020   Code   RO            3    i.LCD_Blank         main.o
+    0x00000480   0x0000007c   Code   RO            4    i.LCD_Char_Out      main.o
+    0x000004fc   0x00000024   Code   RO            5    i.LCD_Cmd_Out       main.o
+    0x00000520   0x0000002e   Code   RO            6    i.LCD_Contrast      main.o
+    0x0000054e   0x00000002   PAD
+    0x00000550   0x00000024   Code   RO            7    i.LCD_Dat_Out       main.o
+    0x00000574   0x000000c8   Code   RO            8    i.LCD_Init          main.o
+    0x0000063c   0x00000044   Code   RO           10    i.LCD_Refresh       main.o
+    0x00000680   0x000000a4   Code   RO           11    i.dpad_setup        main.o
+    0x00000724   0x000001bc   Code   RO           12    i.game_refresh      main.o
+    0x000008e0   0x0000000c   Code   RO           13    i.gameover          main.o
+    0x000008ec   0x000000b4   Code   RO           14    i.lcd_setup         main.o
+    0x000009a0   0x00000158   Code   RO           15    i.main              main.o
+    0x00000af8   0x00000054   Code   RO           16    i.move_enemies      main.o
+    0x00000b4c   0x00000018   Code   RO           17    i.move_left         main.o
+    0x00000b64   0x00000018   Code   RO           18    i.move_right        main.o
+    0x00000b7c   0x00000010   Code   RO           19    i.newl              main.o
+    0x00000b8c   0x000000cc   Code   RO           20    i.print_board       main.o
+    0x00000c58   0x0000004c   Code   RO           23    i.shoot             main.o
+    0x00000ca4   0x0000007c   Code   RO           24    i.spawn_bullets     main.o
+    0x00000d20   0x0000004c   Code   RO           25    i.spawn_enemy       main.o
+    0x00000d6c   0x00000060   Code   RO           26    i.start_game        main.o
+    0x00000dcc   0x000000d8   Code   RO           27    i.uart_setup        main.o
+    0x00000ea4   0x0000009c   Code   RO           28    i.update_bullets    main.o
+    0x00000f40   0x00000020   Code   RO           29    i.write_char        main.o
+    0x00000f60   0x0000000a   Code   RO          300    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x00000f6a   0x00000002   PAD
+    0x00000f6c   0x00000020   Data   RO          368    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_ZI (Exec base: 0x20000018, Load base: 0x00000f98, Size: 0x00001410, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Base: 0x20000000, Size: 0x00000018, Max: 0xffffffff, ABSOLUTE)
 
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000018        -       0x00000fb0   Zero   RW           30    .bss                main.o
-    0x20000fc8        -       0x00000060   Zero   RW          242    .bss                c_w.l(libspace.o)
-    0x20001028        -       0x00000000   Zero   RW          200    HEAP                startup.o
-    0x20001028        -       0x00000400   Zero   RW          199    STACK               startup.o
+    0x20000000   0x00000018   Data   RW           31    .data               main.o
+
+
+    Execution Region ER_ZI (Base: 0x20000018, Size: 0x00001410, Max: 0xffffffff, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000018   0x00000fb0   Zero   RW           30    .bss                main.o
+    0x20000fc8   0x00000060   Zero   RW          242    .bss                c_w.l(libspace.o)
+    0x20001028   0x00000000   Zero   RW          200    HEAP                startup.o
+    0x20001028   0x00000400   Zero   RW          199    STACK               startup.o
 
 
 ==============================================================================
@@ -720,11 +720,11 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-      2930        262          0         24       4016      17465   main.o
-       708        632          0          0       1024       1040   startup.o
+      2942        262          0         24       4016      17605   main.o
+       708        632          0          0       1024       1048   startup.o
 
     ----------------------------------------------------------------------
-      3642        894         32         24       5040      18505   Object Totals
+      3654        894         32         24       5040      18653   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          4          0          0          0          0          0   (incl. Padding)
 
@@ -775,15 +775,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      3936        910         32         24       5136      16749   Grand Totals
-      3936        910         32         24       5136      16749   ELF Image Totals
-      3936        910         32         24          0          0   ROM Totals
+      3948        910         32         24       5136      16897   Grand Totals
+      3948        910         32         24       5136      16897   ELF Image Totals
+      3948        910         32         24          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 3968 (   3.88kB)
+    Total RO  Size (Code + RO Data)                 3980 (   3.89kB)
     Total RW  Size (RW Data + ZI Data)              5160 (   5.04kB)
-    Total ROM Size (Code + RO Data + RW Data)       3992 (   3.90kB)
+    Total ROM Size (Code + RO Data + RW Data)       4004 (   3.91kB)
 
 ==============================================================================
 
