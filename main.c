@@ -15,11 +15,15 @@ void print_board(void);
 char * itoa(int,int);
 
 int main(){
+		
+	int i;
 	
 	// Run Setups on Interrupts, LCD and UART
+	uart_setup();
 	dpad_setup();
 	lcd_setup();
-	uart_setup();
+
+	newl();
 
 	// Demonstrate basic LCD test
 	LCD_Blank();
@@ -38,8 +42,6 @@ int main(){
 	int waves = 0;
 	int apos=16;
 	int bpos=15;
-	
-	int i;
 	
 	// Until Game is lost
 	while(running)
@@ -79,28 +81,21 @@ int main(){
 		game_refresh();
 		print_board();
 		
-		// Bottom-out the display with underscores
-		for(i=0;i<X;i++){
-			write_char('_');
-		}
-		
-		newl();
-		
 		count++;
 	}
 	
 	// Once game is over, print score / wave messages and spin
-	char msg[10] = "Game Over!";
+	char msgmvr[10] = "Game Over!";
 	
 	for(i=0;i<10;i++){
-		write_char(msg[i]);
+		write_char(msgmvr[i]);
 	}
 		
 	newl();
 	
-	char msg2[7] = "Kills: ";
+	char msgscr[7] = "Score: ";
 	for(i=0;i<7;i++){
-		write_char(msg2[i]);
+		write_char(msgscr[i]);
 	}
 	
 	for(i=0;i<score;i++){
@@ -109,9 +104,9 @@ int main(){
 	
 	newl();
 	
-	char msg3[7] = "Waves: ";
+	char msgwav[7] = "Waves: ";
 	for(i=0;i<7;i++){
-		write_char(msg3[i]);
+		write_char(msgwav[i]);
 	}
 	
 	for(i=0;i<waves;i++){
@@ -133,13 +128,7 @@ void print_board(){
 	write_char('\033');
 	write_char('\143');
 	
-	// print the number of remaining lives
-	for(i=0;i<lives;i++){
-		write_char('<');
-		write_char('3');
-		write_char(' ');
-	}
-	
+	newl();
 	// print board state to terminal
 	// 1 : Player
 	// 2 : Enemy
@@ -167,6 +156,23 @@ void print_board(){
 		}
 		newl();
 	}
+	
+	// Bottom-out the display with underscores
+	for(i=0;i<X;i++){
+		write_char('_');
+	}
+		
+	newl();
+	
+	// print the number of remaining lives
+	for(i=0;i<lives;i++){
+		write_char('<');
+		write_char('3');
+		write_char(' ');
+	}
+	
+	newl();
+	
 }
 
 // newl(): void

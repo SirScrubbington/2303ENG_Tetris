@@ -177,7 +177,7 @@ void game_refresh(){
 			// and call gameover if all lives are lost
 			if((enmlst[i].y == 1) && (enmlst[i].x == player.x)){
 				lives--;
-				if(lives < 0){ 
+				if(lives < 1){ 
 					gameover();
 				}
 			}
@@ -194,7 +194,7 @@ void game_refresh(){
 			// and call gameover if all lives are lost.
 			if((nmyblt[i].y == 1) && (nmyblt[i].x == player.x)){
 				lives--;
-				if(lives < 0){ 
+				if(lives < 1){ 
 					gameover();
 				}
 			}
